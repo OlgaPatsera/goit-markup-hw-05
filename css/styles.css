@@ -5,7 +5,7 @@
   /*Text colors*/
   --main-txt-cl: #212121;
   --secondary-txt-cl: #757575;
-  --hero-title-cl: #ffffff;
+  --white-title-cl: #ffffff;
   /*Logo colors*/
   --first-logo-cl: #2196f3;
   --dark-logo-cl: #000000;
@@ -16,7 +16,6 @@
   --contacts-hdr-cl: #757575;
   --contacts-ftr-cl-60: rgba(255, 255, 255, 0.6);
   --adress-ftr-cl: #ffffff;
-
   /*Background colors*/
   --accent-bg-cl: #ffffff;
   --dark-bg-cl: #2f303a;
@@ -43,6 +42,7 @@
   --portfolio-cards-border: 1px solid #eeeeee;
   --portfolio-shadow-hv: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+  --portfolio-box-bg: rgba(33, 150, 243, 0.9);
   --header-border: 1px solid #ececec;
   --feature-icon-bg: #f5f4fa;
   --clients-icon-cl: #afb1b8;
@@ -52,6 +52,8 @@
   --public-ftr-cl: #ffffff;
   --public-ftr-bg: rgba(255, 255, 255, 0.1);
   --public-hv-bg: #2196f3;
+  /*Animation*/
+  --anim-fast-hv: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .page {
   font-family: var(--main-font);
@@ -142,6 +144,9 @@ nav {
   font-weight: 500;
   line-height: calc(16 / 14);
   letter-spacing: 0.02em;
+
+  position: relative;
+  transition: color var(--anim-fast-hv);
 }
 
 .nav-item:not(:last-child) {
@@ -166,6 +171,7 @@ nav {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  transition: color var(--anim-fast-hv);
 }
 .header-item:not(:last-child) {
   margin-right: 50px;
@@ -176,6 +182,18 @@ nav {
 }
 .current {
   color: var(--link-hvr-cl);
+}
+.current::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--link-hvr-cl);
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 2px;
 }
 .header-svg {
   fill: currentColor;
@@ -217,6 +235,7 @@ nav {
   font-style: normal;
   text-decoration: none;
   color: var(--adress-ftr-cl);
+  transition: color var(--anim-fast-hv);
 }
 .link-address:hover,
 .link-address:focus {
@@ -255,6 +274,7 @@ nav {
   background-color: var(--public-ftr-bg);
   justify-content: center;
   align-items: center;
+  transition: background-color var(--anim-fast-hv);
 }
 .public-icon {
   width: 20px;
@@ -300,7 +320,7 @@ nav {
   line-height: calc(60 / 44);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--hero-title-cl);
+  color: var(--white-title-cl);
   margin: 0 auto;
 }
 .hero-btn {
@@ -319,6 +339,12 @@ nav {
   font-size: 16px;
   line-height: calc(30 / 16);
   letter-spacing: 0.06em;
+}
+.bth-close {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 /*Особливості*/
 .feature-container {
@@ -399,6 +425,29 @@ nav {
 .work {
   padding-top: 0;
 }
+.work-item {
+  position: relative;
+}
+
+.label-title {
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  text-transform: uppercase;
+  color: var(--white-title-cl);
+  text-align: center;
+  position: absolute;
+  bottom: 27px;
+  right: 50%;
+  transform: translateX(50%);
+}
+.label-thumb {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: rgba(47, 48, 58, 0.8);
+}
 /*Команда*/
 .teams-group {
   background-color: var(--teams-bg);
@@ -417,6 +466,7 @@ nav {
   display: flex;
   flex-direction: column;
   width: 270px;
+  border-radius: var(--teams-border-radius);
   box-shadow: var(--teams-border-shadow);
 }
 .teams-item:not(:last-child) {
@@ -459,6 +509,7 @@ nav {
   color: var(--social-icon-cl);
   justify-content: center;
   align-items: center;
+  transition: background-color var(--anim-fast-hv), color var(--anim-fast-hv);
 }
 .social-link:hover,
 .social-link:focus {
@@ -499,6 +550,7 @@ nav {
   justify-content: center;
   align-items: center;
   color: var(--clients-icon-cl);
+  transition: color var(--anim-fast-hv), border-color var(--anim-fast-hv);
 }
 .clients-icon {
   width: 106px;
@@ -538,6 +590,8 @@ nav {
   font-size: 16px;
   line-height: calc(26 / 16);
   background-color: var(--btn-bg-cl);
+  transition: background-color var(--anim-fast-hv), color var(--anim-fast-hv),
+    box-shadow var(--anim-fast-hv), border var(--anim-fast-hv);
 }
 .filter-item:not(:last-child) {
   margin-right: 8px;
@@ -584,8 +638,39 @@ nav {
   display: block;
   text-decoration: none;
   color: inherit;
+  transition: box-shadow var(--anim-fast-hv);
 }
 .portfolio-link:hover,
 .portfolio-link:focus {
   box-shadow: var(--portfolio-shadow-hv);
+}
+.portfolio-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-overlay {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: translateY(100%);
+  transition: transform var(--anim-fast-hv);
+}
+
+.portfolio-description {
+  display: flex;
+  background-color: var(--portfolio-box-bg);
+  font-size: 18px;
+  line-height: calc(28 / 14);
+  color: var(--white-title-cl);
+  justify-content: center;
+  align-items: center;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.portfolio-link:hover .portfolio-overlay {
+  transform: translateY(0);
 }
