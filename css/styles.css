@@ -25,6 +25,11 @@
   --hero-border: 1px solid #2196f3;
   --hero-btn-txt: #ffffff;
   --btn-radius: 4px;
+  --modal-bg-hero: rgba(0, 0, 0, 0.2);
+  --modal-border-radius: 4px;
+  --modal-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  --vector-border-modal: rgba(0, 0, 0, 0.1);
   /*Button portfolio*/
   --btn-bg-hover: #2196f3;
   --btn-text-hover: #ffffff;
@@ -340,12 +345,7 @@ nav {
   line-height: calc(30 / 16);
   letter-spacing: 0.06em;
 }
-.bth-close {
-  display: flex;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
+
 /*Особливості*/
 .feature-container {
   display: flex;
@@ -658,19 +658,65 @@ nav {
   left: 0;
   transform: translateY(100%);
   transition: transform var(--anim-fast-hv);
+  background-color: var(--portfolio-box-bg);
 }
 
 .portfolio-description {
   display: flex;
-  background-color: var(--portfolio-box-bg);
+  justify-content: center;
+  align-items: center;
+
   font-size: 18px;
   line-height: calc(28 / 14);
   color: var(--white-title-cl);
-  justify-content: center;
-  align-items: center;
+
   padding-left: 24px;
   padding-right: 24px;
 }
 .portfolio-link:hover .portfolio-overlay {
   transform: translateY(0);
+}
+/*Modal window hero*/
+.hero-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-bg-hero);
+  z-index: 1000;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hero-modal {
+  position: absolute;
+  width: 528px;
+  height: 581px;
+  background-color: var(--accent-bg-cl);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: var(--modal-border-radius);
+  box-shadow: var(--modal-shadow);
+}
+.btn-close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--vector-border-modal);
+  background-color: var(--accent-bg-cl);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.hero-backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
