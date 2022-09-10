@@ -25,6 +25,8 @@
   --hero-border: 1px solid #2196f3;
   --hero-btn-txt: #ffffff;
   --btn-radius: 4px;
+  --hero-btn-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  --hero-hv-cl: #188ce8;
   --modal-bg-hero: rgba(0, 0, 0, 0.2);
   --modal-border-radius: 4px;
   --modal-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
@@ -332,10 +334,13 @@ nav {
   min-width: 216px;
   min-height: 50px;
   cursor: pointer;
+  transition: background-color var(--anim-fast-hv);
+
   padding: 9px 31px;
   margin-top: 30px;
-  border: var(--hero-border);
+  border: none;
   border-radius: var(--btn-radius);
+  box-shadow: var(--hero-btn-shadow);
 
   color: var(--hero-btn-txt);
   background-color: var(--hero-btn-cl);
@@ -345,7 +350,10 @@ nav {
   line-height: calc(30 / 16);
   letter-spacing: 0.06em;
 }
-
+.hero-btn:hover,
+.hero-btn:focus {
+  background-color: var(--hero-hv-cl);
+}
 /*Особливості*/
 .feature-container {
   display: flex;
@@ -435,10 +443,6 @@ nav {
   text-transform: uppercase;
   color: var(--white-title-cl);
   text-align: center;
-  position: absolute;
-  bottom: 27px;
-  right: 50%;
-  transform: translateX(50%);
 }
 .label-thumb {
   position: absolute;
@@ -447,6 +451,9 @@ nav {
   width: 100%;
   height: 70px;
   background-color: rgba(47, 48, 58, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /*Команда*/
 .teams-group {
@@ -582,8 +589,8 @@ nav {
 }
 .btn {
   border-radius: 4px;
-  border: 1px solid #f5f4fa;
-  padding: 5px 21px;
+  border: none;
+  padding: 6px 21px;
   cursor: pointer;
   font-family: inherit;
   font-weight: 500;
@@ -591,7 +598,7 @@ nav {
   line-height: calc(26 / 16);
   background-color: var(--btn-bg-cl);
   transition: background-color var(--anim-fast-hv), color var(--anim-fast-hv),
-    box-shadow var(--anim-fast-hv), border var(--anim-fast-hv);
+    box-shadow var(--anim-fast-hv);
 }
 .filter-item:not(:last-child) {
   margin-right: 8px;
@@ -601,7 +608,6 @@ nav {
   background-color: var(--btn-bg-hover);
   color: var(--btn-text-hover);
   box-shadow: var(--btn-shadow-hv);
-  border: var(--btn-bg-hover);
 }
 .portfolio-list {
   display: flex;
@@ -651,6 +657,7 @@ nav {
 
 .portfolio-overlay {
   display: flex;
+  align-items: center;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -659,19 +666,14 @@ nav {
   transform: translateY(100%);
   transition: transform var(--anim-fast-hv);
   background-color: var(--portfolio-box-bg);
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .portfolio-description {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   font-size: 18px;
   line-height: calc(28 / 14);
   color: var(--white-title-cl);
-
-  padding-left: 24px;
-  padding-right: 24px;
 }
 .portfolio-link:hover .portfolio-overlay {
   transform: translateY(0);
